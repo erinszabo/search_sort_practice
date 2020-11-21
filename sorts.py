@@ -71,3 +71,51 @@ def gapInsertionSort(alist, start, gap):
             position = position - gap
 
         alist[position] = currentvalue
+
+
+def mergeSort(alist):
+    # print("Splitting ", alist)
+    if len(alist) > 1:
+        mid = len(alist) // 2
+        # print(f"mid = {mid}")
+        lefthalf = alist[:mid]
+        # print(f"lefthalf = {lefthalf}")
+        righthalf = alist[mid:]
+        # print(f"righthalf = {righthalf}")
+
+        mergeSort(lefthalf)
+        mergeSort(righthalf)
+
+        i = 0
+        j = 0
+        k = 0
+        # print("Merging ", lefthalf, righthalf)
+        while i < len(lefthalf) and j < len(righthalf):
+            if lefthalf[i] <= righthalf[j]:
+                alist[k] = lefthalf[i]
+                # print(f"alist = {alist}")
+                i = i + 1
+                # print(f"i = {i}")
+
+            else:
+                alist[k] = righthalf[j]
+                # print(f"alist = {alist}")
+                j = j + 1
+                # print(f"j = {j}")
+            k = k + 1
+            # print(f"k = {k}")
+
+        while i < len(lefthalf):
+            alist[k] = lefthalf[i]
+            # print(f"alist = {alist}")
+            i = i + 1
+            k = k + 1
+            # print(f"i = {i} k = {k}")
+
+        while j < len(righthalf):
+            alist[k] = righthalf[j]
+            # print(f"alist = {alist}")
+            j = j + 1
+            k = k + 1
+            # print(f"j = {j} k = {k}")
+        print("Merged ", alist)
